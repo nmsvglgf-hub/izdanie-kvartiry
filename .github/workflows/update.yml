@@ -1,0 +1,25 @@
+name: Обновление цен с сайта Брусники
+on:
+  schedule:
+    - cron: "0 3,9,15,21 * * *" # 06:00, 12:00, 18:00, 00:00 по Москве
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: update
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node update.mjs
+      - name: Коммит, если что-то изменилось
+        run: |
+          git add -A data.js img
+          git config user.name "github-actions[bot]"
+          git config user.email "41898333+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Обновление цен $(TZ=Europe/Moscow date '+%d.%m.%Y %H:%M')" || echo "нет изменений"
+          git push
