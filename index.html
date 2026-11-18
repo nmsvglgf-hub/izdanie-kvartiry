@@ -1,0 +1,724 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<meta name="robots" content="noindex, nofollow">
+<title>Квартал «Издание»</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap">
+<style>
+/* Фирменный стиль ПРОСТОР: светлый фон, белые плашки с крупным скруглением, синие кнопки-таблетки, оранжевые акценты.
+   Каталог: плитки-сводка сверху, фильтры-чипы, карточки 4→1 колонки; квартира: план слева, паспорт справа, ниже блоки расчётов */
+:root{
+  --bg:#eef2f7; --surface:#f5f7fb; --card:#ffffff; --ink:#012e45; --muted:#6b7379; --line:#e3e9ef;
+  --blue:#1879d4; --blue-ink:#ffffff; --blue-soft:#ddebf8;
+  --accent:#f89332; --accent-ink:#ffffff; --accent-soft:#fee9d6;
+  --forest:#1d7a4e; --forest-bg:#dcf5e8; --lav:#dddef8; --red:#d3202e;
+  --plan-bg:#ffffff;
+  --display:"Trebuchet MS","Lato",system-ui,sans-serif; --text:"Lato","Trebuchet MS",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r-card:28px; --r-in:20px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#08161f; --surface:#183245; --card:#112836; --ink:#e8f1f7; --muted:#9db0bd; --line:#1f3a4c;
+  --blue:#4ea3ef; --blue-ink:#04192a; --blue-soft:#163a55;
+  --accent:#f89332; --accent-ink:#2a1300; --accent-soft:#3d2a17;
+  --forest:#8fdcb4; --forest-bg:#173a2a; --lav:#24264d; --red:#ff6b74;
+  --plan-bg:#f4f7fa; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#08161f; --surface:#183245; --card:#112836; --ink:#e8f1f7; --muted:#9db0bd; --line:#1f3a4c;
+  --blue:#4ea3ef; --blue-ink:#04192a; --blue-soft:#163a55;
+  --accent:#f89332; --accent-ink:#2a1300; --accent-soft:#3d2a17;
+  --forest:#8fdcb4; --forest-bg:#173a2a; --lav:#24264d; --red:#ff6b74;
+  --plan-bg:#f4f7fa; color-scheme:dark}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--text);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--bg)}
+button,input,select{font:inherit;color:inherit}
+a{color:inherit}
+.wrap{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.num{font-variant-numeric:tabular-nums}
+header.top{padding-block:20px 18px}
+.brandbar{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:999px;padding:10px 22px}
+.brandbar .logo{display:inline-flex;background:#fff;border-radius:999px;padding:4px 10px;cursor:pointer}
+.brandbar .logo:hover{box-shadow:0 0 0 2px var(--blue-soft)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-size:14px;z-index:20;max-width:calc(100vw - 32px);text-align:center}
+.brandbar img{height:34px;width:auto;display:block}
+.brandbar .city{white-space:nowrap;border-left:1px solid var(--muted);padding-left:12px;font-size:12px;line-height:1.3}
+.brandbar .pill{margin-left:auto;background:var(--blue-soft);border-radius:999px;padding:9px 16px;font-size:14px}
+.eyebrow{font-size:13px;color:var(--blue);font-weight:700}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-wrap:balance;margin:0}
+h1{font-size:clamp(28px,4vw,40px);line-height:1.15;margin:6px 0 10px}
+.lead{color:var(--muted);max-width:46ch;margin:0}
+.fresh{display:inline-flex;align-items:center;gap:8px;background:var(--accent-soft);border-radius:999px;padding:6px 12px;font-size:13px;font-weight:700;align-self:flex-start;margin-bottom:10px}
+.dinfo .fresh{margin:10px 0 0}
+.fresh::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:20px;align-items:stretch}
+.hero-text{background:var(--card);border-radius:var(--r-card);padding:28px 30px;display:flex;flex-direction:column;justify-content:center;gap:4px;min-width:0}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;min-width:0}
+.stat{border:0;font:inherit;color:var(--ink);text-align:left;border-radius:var(--r-in);padding:16px 18px;display:flex;flex-direction:column;justify-content:space-between;gap:6px;min-width:0;background:var(--surface)}
+.stat .v{font-family:var(--display);font-weight:700;font-size:28px;line-height:1.05;font-variant-numeric:tabular-nums}
+.stat .k{font-size:13px;color:var(--muted)}
+.stat.total{grid-column:span 2;background:var(--blue);color:var(--blue-ink)}
+.stat.total .v{font-size:44px}
+.stat.total .k{color:inherit;opacity:.85}
+.stat.range{grid-column:span 2;background:var(--accent-soft)}
+.stat.range .v{font-size:26px}
+.stat.room{cursor:pointer;background:var(--blue-soft)}
+.stat.room:nth-child(4){background:var(--lav)}
+.stat.room:nth-child(5){background:var(--forest-bg)}
+.stat.room:nth-child(6){background:var(--accent-soft)}
+.stat.room:hover{filter:brightness(.97)}
+.stat.room[aria-pressed="true"]{outline:2px solid var(--accent);outline-offset:-2px}
+@media (max-width:900px){.hero{grid-template-columns:1fr}.hero-text{padding:22px}}
+@media (max-width:480px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stat.total .v{font-size:36px}}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding-block:12px}
+.group{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.chip{font:inherit;font-size:14px;border:0;background:var(--card);color:var(--ink);padding:8px 14px;border-radius:999px;cursor:pointer;display:inline-flex;gap:8px;align-items:center;font-variant-numeric:tabular-nums}
+.chip small{background:var(--accent);color:var(--accent-ink);font-size:12px;font-weight:700;min-width:26px;height:26px;padding:0 7px;border-radius:999px;display:inline-grid;place-items:center;margin:-4px -8px -4px 0}
+.chip:hover{background:var(--blue-soft)}
+.chip[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
+.chip[aria-pressed="true"] small{background:#fff;color:var(--accent)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+select{font-size:14px;padding:8px 14px;border-radius:999px;border:0;background:var(--blue-soft);color:var(--ink)}
+.sortbox{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+.summary{padding-block:12px 4px;color:var(--muted);font-variant-numeric:tabular-nums}
+.summary b{color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:20px;padding-block:12px 48px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);display:flex;flex-direction:column;min-width:0;padding:10px;cursor:pointer;color:inherit;text-decoration:none;box-shadow:0 1px 2px rgba(1,46,69,.06),0 10px 28px -12px rgba(1,46,69,.22);transition:box-shadow .15s ease,border-color .15s ease,transform .15s ease}
+.card:hover{border-color:var(--blue);box-shadow:0 1px 2px rgba(1,46,69,.08),0 16px 36px -14px rgba(1,46,69,.35)}
+@media (prefers-reduced-motion:no-preference){.card:hover{transform:translateY(-2px)}}
+.plan{display:block;background:var(--plan-bg);aspect-ratio:4/3;position:relative;overflow:hidden;width:100%;max-width:100%;border-radius:var(--r-in);border:1px solid var(--line);padding:0}
+.plan img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:contain;display:block;padding:44px 14px 14px;box-sizing:border-box}
+.ptags{position:absolute;left:10px;top:10px;right:10px;display:flex;flex-wrap:wrap;gap:6px;z-index:1}
+.tag{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:#012e45;color:#fff}
+.pill2{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--blue-soft);color:var(--blue)}
+.pill2.fill{background:var(--blue);color:var(--blue-ink)}
+.pill2.raw{background:var(--forest-bg);color:var(--forest)}
+.bk{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink)}
+.body{padding:14px 8px 6px;display:flex;flex-direction:column;gap:12px;flex:1}
+.head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.head h2{font-size:19px}
+.head .open{font-size:13px;font-weight:700;color:var(--blue);white-space:nowrap;text-decoration:none}
+.card:hover .open{text-decoration:underline}
+.params{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:0}
+.params div{min-width:0}
+.params dt{font-size:12px;color:var(--muted)}
+.params dd{margin:2px 0 0;font-weight:700;font-variant-numeric:tabular-nums}
+.price{border-top:1px solid var(--line);padding-top:12px;margin-top:auto}
+.price .note{font-size:12px;color:var(--accent);font-weight:700}
+.pnote{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+.act{font-size:11.5px;font-weight:700;background:var(--accent-soft);color:var(--ink);border-radius:999px;padding:3px 10px;white-space:nowrap}
+.price .main{font-family:var(--display);font-weight:700;font-size:23px;font-variant-numeric:tabular-nums;color:var(--red)}
+.price .old{font-size:14px;color:var(--muted);text-decoration:line-through;font-variant-numeric:tabular-nums}
+.price .cond{font-size:12.5px;color:var(--muted);margin-top:2px}
+.offers{background:var(--blue-soft);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;font-variant-numeric:tabular-nums;font-size:13px}
+.offers .o-h{font-weight:700;font-size:13px}
+.offers .o-r{display:flex;justify-content:space-between;gap:8px}
+.offers .o-r span{color:var(--muted)}
+.offers .o-r b{white-space:nowrap}
+.calcrow{margin-top:10px;display:flex;flex-direction:column;gap:6px;background:var(--accent-soft);border-radius:12px;padding:8px}
+.calcrow .lbl{font-size:12px;color:var(--muted);display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;padding:0 2px}
+.calcrow .lbl b{font-size:13px;color:var(--ink)}
+.cbtns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:5px}
+.calcbtn{font-size:12.5px;font-weight:700;line-height:1.2;text-align:left;padding:7px 6px 7px 10px;border-radius:9px;border:0;background:var(--blue);color:var(--blue-ink);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:4px;box-shadow:0 1px 0 rgba(1,46,69,.2);text-decoration:none}
+.calcbtn:last-child:nth-child(odd){grid-column:1/-1}
+.calcbtn i{font-style:normal;font-size:14px;line-height:1;flex:none}
+.calcbtn:hover{filter:brightness(1.1)}
+.empty{grid-column:1/-1;padding:40px;text-align:center;color:var(--muted)}
+footer{color:var(--muted);font-size:13px;padding-block:0 32px}
+
+/* квартира */
+.detail{padding-block:4px 48px}
+.back{font-size:14px;font-weight:700;border:0;background:var(--card);color:var(--blue);border-radius:999px;padding:10px 18px;cursor:pointer;box-shadow:0 1px 2px rgba(1,46,69,.08)}
+.dgrid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:20px;align-items:start;margin-top:14px}
+.dplan,.dinfo,.ccard{background:var(--card);border:1px solid var(--line);border-radius:var(--r-card);box-shadow:0 10px 28px -12px rgba(1,46,69,.22);min-width:0}
+.dplan{padding:12px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 16px)}
+.dplan .plan{cursor:zoom-in}
+.dplan .plan img{padding:52px 24px 24px}
+.dplan .hint{margin:10px 6px 2px;font-size:13px;color:var(--muted)}
+.ptabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 4px 0}
+.dinfo{padding:22px;display:flex;flex-direction:column;gap:16px}
+.dinfo h1{font-size:clamp(26px,3vw,34px);margin:2px 0 0}
+.dparams{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:0}
+.dparams dt{font-size:12px;color:var(--muted)}
+.dparams dd{margin:2px 0 0;font-weight:700;font-variant-numeric:tabular-nums}
+.dinfo .price .main{font-size:30px}
+.dinfo .offers{font-size:14px}
+.dtags{display:flex;flex-wrap:wrap;gap:6px}
+.dtags span{font-size:12.5px;padding:5px 11px;border-radius:999px;background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.dtags span.fill{background:var(--blue);color:var(--blue-ink);box-shadow:none;font-weight:700}
+.dtags span.red{color:var(--red);box-shadow:inset 0 0 0 1px var(--red)}
+.status{font-size:13px;color:var(--muted);margin:0}
+.status a{color:var(--blue);font-weight:700;text-decoration:none}
+@media (max-width:900px){.dgrid{grid-template-columns:minmax(0,1fr)}.dplan{position:static}}
+@media (max-width:480px){.dparams{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.calch{margin:40px 0 16px;font-size:clamp(26px,3vw,32px)}
+.cgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;align-items:start}
+@media (max-width:900px){.cgrid{grid-template-columns:minmax(0,1fr)}}
+.ccard{padding:22px;display:flex;flex-direction:column;gap:16px;font-variant-numeric:tabular-nums;scroll-margin-top:90px}
+.ccard h3{font-size:20px;font-weight:700}
+.ccard.flash{outline:3px solid var(--accent);outline-offset:2px}
+.okbox{background:var(--forest-bg);color:var(--forest);border-radius:16px;padding:12px 14px;font-weight:700;font-size:14px}
+.okbox small{display:block;font-size:13px}
+.fld{display:flex;flex-direction:column;gap:8px}
+.fld>.lbl{font-size:13px;color:var(--muted)}
+.ccard .chip:not([aria-pressed="true"]){background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
+.ccard .chip:not([aria-pressed="true"]):hover{background:var(--blue-soft)}
+.rng{display:flex;gap:12px;align-items:center}
+.rng input[type=range]{flex:1;accent-color:var(--accent);min-width:0}
+.rng output{min-width:7ch;text-align:right;font-weight:700}
+.ccard input[type=number]{font-weight:700;width:100%;padding:10px 14px;border-radius:14px;border:0;background:var(--surface);color:var(--ink)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+.big,.stage{background:var(--surface);border-radius:var(--r-in);padding:14px 16px;min-width:0}
+.big{background:var(--blue-soft);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-end}
+.big .t,.stage .t{font-size:13px;color:var(--muted)}
+.big .p,.stage .p{font-family:var(--display);font-weight:700;font-size:21px;margin:4px 0 2px}
+.big .p{font-size:28px}
+.big .s,.stage .s{font-size:13px;color:var(--muted)}
+.big .side{text-align:right}
+.big .side .p{font-size:17px}
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.facts{display:grid;grid-template-columns:1fr auto;gap:8px 12px;margin:0;font-size:14px}
+.facts dt{color:var(--muted)}
+.facts dd{margin:0;text-align:right;font-weight:700}
+.warn{background:var(--accent-soft);border-radius:16px;padding:12px 14px;font-size:13px}
+.fine{font-size:12px;color:var(--muted);margin:0}
+dialog{border:none;border-radius:var(--r-card);padding:0;max-width:min(94vw,1000px);width:100%;background:var(--plan-bg)}
+dialog::backdrop{background:rgba(1,46,69,.6)}
+dialog img{display:block;width:100%;height:auto;max-height:80vh;object-fit:contain}
+dialog .cap{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 16px;background:var(--surface);color:var(--ink)}
+dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radius:999px;padding:8px 16px;cursor:pointer}
+.chead{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.dlmini{border:0;background:var(--blue-soft);color:var(--blue);font-size:13px;font-weight:700;border-radius:999px;padding:7px 14px;cursor:pointer}
+.dlmini:hover{filter:brightness(.96)}
+.dlrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.dlbtn{border:0;background:var(--accent);color:var(--accent-ink);font-size:14px;font-weight:700;border-radius:999px;padding:11px 18px;cursor:pointer}
+.dlbtn:hover{filter:brightness(1.05)}
+.dlbtn:disabled,.dlmini:disabled{opacity:.6;cursor:progress}
+.dlmsg{font-size:13px;color:var(--muted)}
+.dlmsg.inl{display:block;width:100%}
+/* лист для PDF: всегда светлый, вне экрана */
+.sheet{position:fixed;left:-12000px;top:0;width:794px;background:#fff;color:#012e45;font-family:var(--text);font-size:14px;line-height:1.4;font-variant-numeric:tabular-nums}
+.sheet .sec{padding:28px 36px;background:#fff}
+.sheet .brand{display:flex;align-items:center;gap:14px;border-bottom:2px solid #f89332;padding-bottom:14px;margin-bottom:18px}
+.sheet .brand img{height:30px}
+.sheet .brand span{margin-left:auto;font-size:12px;color:#6b7379;text-align:right}
+.sheet .ey{font-size:12px;color:#1879d4;font-weight:700}
+.sheet h1{font-family:var(--display);font-size:28px;margin:2px 0 12px;color:#012e45}
+.sheet .row{display:grid;grid-template-columns:1.1fr 1fr;gap:22px;align-items:start}
+.sheet .pl{border:1px solid #e3e9ef;border-radius:16px;height:330px;display:flex;align-items:center;justify-content:center;padding:14px}
+.sheet .pl img{max-width:100%;max-height:100%;object-fit:contain}
+.sheet .kv{display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:0 0 14px}
+.sheet .kv dt{font-size:11px;color:#6b7379}
+.sheet .kv dd{margin:1px 0 0;font-weight:700}
+.sheet .act{display:inline-block;background:#fee9d6;color:#012e45;font-weight:700;font-size:12px;border-radius:999px;padding:5px 12px;margin:0 0 12px}
+.sheet .act::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:#f89332;margin-right:7px;vertical-align:1px}
+.sheet .pr{font-family:var(--display);font-size:26px;font-weight:700;color:#d3202e}
+.sheet .old{color:#6b7379;text-decoration:line-through}
+.sheet .sm{font-size:12px;color:#6b7379}
+.sheet .tg{display:flex;flex-wrap:wrap;gap:5px;margin-top:12px}
+.sheet .tg span{font-size:11px;padding:3px 9px;border-radius:999px;border:1px solid #e3e9ef}
+.sheet .tg span.fill{background:#1879d4;border-color:#1879d4;color:#fff;font-weight:700}
+.sheet h2{font-family:var(--display);font-size:20px;margin:0 0 4px;color:#012e45}
+.sheet .box{border:1px solid #e3e9ef;border-radius:16px;padding:16px 18px}
+.sheet .hl{display:flex;gap:10px;margin:12px 0}
+.sheet .hl div{flex:1;background:#ddebf8;border-radius:12px;padding:10px 12px}
+.sheet .hl div.alt{background:#f5f7fb}
+.sheet .hl b{display:block;font-family:var(--display);font-size:19px}
+.sheet .hl small{display:block;font-size:11px;color:#6b7379}
+.sheet table{width:100%;border-collapse:collapse;font-size:13px}
+.sheet td{padding:6px 0;border-bottom:1px solid #eef2f7}
+.sheet td:last-child{text-align:right;font-weight:700}
+.sheet .ft{font-size:11px;color:#6b7379;margin-top:10px}
+@media (max-width:640px){.sortbox{margin-left:0}.bar .wrap{gap:8px 12px}.brandbar .pill{display:none}.bar{position:static}}
+</style>
+<header class="top"><div class="wrap">
+  <div class="brandbar">
+    <a class="logo" href="#" id="home" title="К списку квартир" aria-label="Простор Недвижимость — к списку квартир"><img src="logo.png" alt="Простор Недвижимость"></a>
+    <span class="city">Москва<br>Простор-недвижимость</span>
+    <span class="pill">Департамент брокериджа</span>
+  </div>
+</div></header>
+
+<main id="list-view">
+  <section class="wrap hero">
+    <div class="hero-text">
+      <span class="eyebrow" id="eyebrow"></span>
+      <h1>Квартиры в наличии</h1>
+      <span class="fresh" id="fresh"></span>
+      <p class="lead">Два дома квартала «Издание» от Брусники. Цены со скидкой с сайта застройщика, рядом — цена без скидки. Откройте квартиру или нажмите кнопку программы, чтобы посчитать траншевую и семейную ипотеку, рассрочку или стандартную ипотеку.</p>
+    </div>
+    <div class="stats" id="stats"></div>
+  </section>
+  <div class="bar"><div class="wrap">
+    <div class="group" id="f-rooms"></div>
+    <div class="group" id="f-house"></div>
+    <label class="sortbox">Сортировка
+      <select id="f-sort">
+        <option value="promo">Сначала дешевле</option>
+        <option value="-promo">Сначала дороже</option>
+        <option value="area">По площади ↑</option>
+        <option value="-area">По площади ↓</option>
+        <option value="floor">По этажу ↑</option>
+        <option value="-floor">По этажу ↓</option>
+        <option value="sqm">Цена за м² ↑</option>
+      </select>
+    </label>
+  </div></div>
+  <div class="wrap">
+    <div class="summary" id="summary"></div>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<main id="flat-view" hidden></main>
+
+<div class="wrap"><footer id="foot"></footer></div>
+
+<div class="toast" id="toast" role="status" hidden></div>
+<dialog id="zoom"><img id="zoom-img" alt=""><div class="cap"><span id="zoom-cap"></span><button type="button" id="zoom-close">Закрыть</button></div></dialog>
+
+<script src="data.js"></script>
+<script>
+(function () {
+"use strict";
+const FLATS = window.IZD_FLATS || [];
+const META = window.IZD_META || {};
+const byId = new Map(FLATS.map(f => [String(f.id), f]));
+const $ = s => document.querySelector(s);
+const fmt = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 0 });
+const fmt1 = new Intl.NumberFormat("ru-RU", { maximumFractionDigits: 1 });
+const rub = v => fmt.format(Math.round(v)) + " ₽";
+const mln = v => fmt1.format(v / 1e6) + " млн";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const store = {
+  get(k, d) { try { const v = localStorage.getItem("izd3:" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
+  set(k, v) { try { localStorage.setItem("izd3:" + k, JSON.stringify(v)); } catch (e) { /* без сохранения */ } }
+};
+const DATE = META.updated ? META.updated.split("-").reverse().join(".") : "";
+const free = f => f.status === "Свободна";
+const sale = f => f.promo < f.price;
+const roomsShort = f => f.title.startsWith("Двухуровневая") ? "Двухуровн." : f.rooms + "-комн.";
+const houseNo = f => f.house.replace("Дом ", "");
+const flatName = f => "Дом " + houseNo(f) + ", кв. " + f.n;
+const img = (f, k) => "img/" + k + "_" + f.id + ".webp";
+const finish = f => f.tags.includes("Предчистовая отделка") ? "Предчистовая отделка" : f.tags.includes("Без отделки") ? "Без отделки" : "";
+
+/* ---------- даты и финансы ---------- */
+const TODAY = new Date();
+const START = new Date(TODAY.getFullYear(), TODAY.getMonth() + 1, 1);
+const MONTHS = ["янв", "фев", "мар", "апр", "мая", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+const monthName = d => MONTHS[d.getMonth()] + " " + d.getFullYear();
+const addMonths = (d, n) => new Date(d.getFullYear(), d.getMonth() + n, 1);
+const monthsUntil = d => Math.max(1, (d.getFullYear() - START.getFullYear()) * 12 + d.getMonth() - START.getMonth() + 1);
+function annuity(S, ratePct, n) {
+  if (n <= 0) return S;
+  const r = ratePct / 1200;
+  return r === 0 ? S / n : S * r / (1 - Math.pow(1 + r, -n));
+}
+function schedule(credit0, n, rate, disb) { // платёж пересчитывается при выдаче транша
+  let bal = credit0, pay = 0, total = 0, interest = 0;
+  const pays = [];
+  for (let m = 1; m <= n; m++) {
+    if (m === 1 || (disb && disb[m])) { if (disb && disb[m]) bal += disb[m]; pay = annuity(bal, rate, n - m + 1); }
+    const i = bal * rate / 1200; let pr = pay - i; if (m === n) pr = bal;
+    bal -= pr; total += pr + i; interest += i; pays.push(pr + i);
+  }
+  return { pays, total, interest };
+}
+
+/* ---------- условия программ (от отдела продаж; расчёт от цены со скидкой с сайта) ---------- */
+const TR = { rate: 18.7, months: 36, variants: { 30: { first: 100000, label: "100 000 ₽" }, 20: { firstPct: 10, label: "10% цены" } } };
+const KIDS_RATE = [12, 10, 8, 6, 4]; // 1, 2, 3, 4, 5+ детей при взносе меньше 50%
+const FAM39_YEARS = 15, FAM39_STEP = 4;
+const famRate = (pv, kids) => pv >= 50 ? 3.9 : KIDS_RATE[Math.min(kids, 5) - 1];
+const INST = {
+  "Дом 2": { pv: 50, pct: 1, months: 24, text: "взнос 50%, 1% от остатка в месяц, 2 года" },
+  "Дом 1": { pv: 20, pct: 0.5, until: new Date(2027, 8, 1), text: "взнос 20%, 0,5% от остатка в месяц до 09.2027" }
+};
+const hasTranche = f => f.house === "Дом 2";
+
+function calcTranche(f, pv, termY) {
+  const v = TR.variants[pv], price = f.promo, pvSum = price * pv / 100, credit = price - pvSum;
+  const first = Math.min(credit, v.first != null ? v.first : price * v.firstPct / 100);
+  const n = termY * 12, m1 = Math.min(TR.months, n - 1);
+  const disb = {}; disb[m1 + 1] = credit - first;
+  const s = schedule(first, n, TR.rate, disb);
+  return { pvSum, credit, first, second: credit - first, pay1: s.pays[0], pay2: s.pays[m1], over: s.interest, total: pvSum + s.total, from2: addMonths(START, m1) };
+}
+function calcFamily(f, pv, kids, termY) {
+  // 3,9% действует первые 15 лет, затем ставка выше на 4 п.п.; платёж пересчитывается на остаток долга
+  const rate = famRate(pv, kids), pvSum = f.promo * pv / 100, credit = f.promo - pvSum, n = termY * 12;
+  const k = FAM39_YEARS * 12, stepped = pv >= 50 && n > k;
+  const pay = annuity(credit, rate, n);
+  if (!stepped) return { rate, term: termY, pvSum, credit, pay, n };
+  let bal = credit;
+  for (let m = 0; m < k; m++) bal -= pay - bal * rate / 1200;
+  const rate2 = rate + FAM39_STEP, payLater = annuity(bal, rate2, n - k);
+  return { rate, rate2, term: termY, pvSum, credit, pay, payLater, from2: addMonths(START, k), n };
+}
+function calcInst(f) {
+  const c = INST[f.house], price = f.promo, pvSum = price * c.pv / 100, rest = price - pvSum;
+  const n = c.until ? monthsUntil(c.until) : c.months;
+  const pay = rest * c.pct / 100, balloon = Math.max(0, rest - pay * n);
+  return { c, pvSum, rest, n, pay, balloon, last: addMonths(START, n - 1), balloonAt: addMonths(START, n) };
+}
+function calcStd(f, rate, pv, termY) {
+  const pvSum = f.promo * pv / 100, credit = f.promo - pvSum, n = termY * 12, pay = annuity(credit, rate, n);
+  return { pvSum, credit, pay, n, over: pay * n - credit };
+}
+
+/* ---------- состояние расчётов ---------- */
+const S = Object.assign({ tr: 30, trTerm: 30, kids: 1, famPv: 50, famTerm: 30, stdRate: 18.7, stdPv: 20, stdTerm: 30, refRate: 18.7, refTerm: 30 }, store.get("calc", {}));
+const saveS = () => store.set("calc", S);
+
+/* ---------- каталог ---------- */
+const F = Object.assign({ rooms: "all", house: "all", sort: "promo" }, store.get("filters", {}));
+const roomKey = f => f.rooms >= 4 ? "4" : String(f.rooms);
+function renderHead() {
+  const prices = FLATS.map(f => f.promo), sqm = Math.min(...FLATS.map(f => f.promo / f.area));
+  const booked = FLATS.filter(f => !free(f)).length;
+  $("#eyebrow").textContent = "ЖК Квартал «Издание» · Брусника · цены на " + DATE;
+  $("#fresh").textContent = "Наличие свободных лотов актуально на " + DATE;
+  const cnt = k => FLATS.filter(f => roomKey(f) === k).length;
+  const word = n => n % 10 === 1 && n % 100 !== 11 ? "квартира" : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? "квартиры" : "квартир";
+  $("#stats").innerHTML =
+    '<div class="stat total"><span class="k">В продаже</span><span class="v">' + FLATS.length + " " + word(FLATS.length) + '</span><span class="k">2 дома · ' + booked + " забронировано</span></div>" +
+    '<div class="stat range"><span class="k">Цены со скидкой</span><span class="v">' + mln(Math.min(...prices)) + " – " + mln(Math.max(...prices)) + ' ₽</span><span class="k">от ' + rub(sqm) + " за м²</span></div>" +
+    [["1", "1-комн."], ["2", "2-комн."], ["3", "3-комн."], ["4", "4-комн."]].map(r =>
+      '<button type="button" class="stat room" data-r="' + r[0] + '" aria-pressed="' + (F.rooms === r[0]) + '"><span class="v">' + cnt(r[0]) + '</span><span class="k">' + r[1] + "</span></button>").join("");
+  $("#stats").onclick = e => { const b = e.target.closest(".room"); if (!b) return; F.rooms = F.rooms === b.dataset.r ? "all" : b.dataset.r; saveF(); renderFilters(); renderGrid(); };
+  $("#foot").textContent = "Цена со скидкой — цена с сайта застройщика moskva.brusnika.ru на " + DATE + " (при 100% оплате, ипотеке или обмене); все расчёты сделаны от неё. Планировки с сайта застройщика. Платежи ориентировочные: аннуитет, без страховки и комиссий банка.";
+}
+function chips(el, key, opts) {
+  el.innerHTML = opts.map(o => '<button type="button" class="chip" data-v="' + o[0] + '" aria-pressed="' + (F[key] === o[0]) + '">' + o[1] + " <small>" + o[2] + "</small></button>").join("");
+  el.onclick = e => { const b = e.target.closest("button"); if (!b) return; F[key] = b.dataset.v; saveF(); renderFilters(); renderGrid(); };
+}
+function renderFilters() {
+  const c = fn => FLATS.filter(fn).length;
+  chips($("#f-rooms"), "rooms", [["all", "Все", FLATS.length]].concat([["1", "1-комн."], ["2", "2-комн."], ["3", "3-комн."], ["4", "4-комн."]].map(r => [r[0], r[1], c(f => roomKey(f) === r[0])])));
+  chips($("#f-house"), "house", [["all", "Оба дома", FLATS.length], ["Дом 1", "Дом 1 · 2027", c(f => f.house === "Дом 1")], ["Дом 2", "Дом 2 · 2030", c(f => f.house === "Дом 2")]]);
+  document.querySelectorAll(".stat.room").forEach(b => b.setAttribute("aria-pressed", F.rooms === b.dataset.r));
+}
+const saveF = () => store.set("filters", F);
+function filtered() {
+  const a = FLATS.filter(f => (F.rooms === "all" || roomKey(f) === F.rooms) && (F.house === "all" || f.house === F.house));
+  const desc = F.sort.startsWith("-"), k = F.sort.replace("-", "");
+  const val = f => k === "sqm" ? f.promo / f.area : f[k];
+  return a.sort((x, y) => (val(x) - val(y)) * (desc ? -1 : 1) || x.promo - y.promo);
+}
+function offersHTML(f) {
+  if (hasTranche(f)) {
+    const a = calcTranche(f, 30, S.trTerm), b = calcTranche(f, 20, S.trTerm);
+    return '<div class="offers"><span class="o-h">Транш · первые 3 года</span>' +
+      '<span class="o-r"><span>ПВ 30%</span><b>' + rub(a.pay1) + "/мес</b></span>" +
+      '<span class="o-r"><span>ПВ 20%</span><b>' + rub(b.pay1) + "/мес</b></span></div>";
+  }
+  const i = calcInst(f), fam = calcFamily(f, 50, S.kids, S.famTerm);
+  return '<div class="offers"><span class="o-h">Рассрочка и семейная</span>' +
+    '<span class="o-r"><span>Рассрочка · ПВ 20%</span><b>' + rub(i.pay) + "/мес</b></span>" +
+    '<span class="o-r"><span>Семейная 3,9% · 15 лет</span><b>' + rub(fam.pay) + "/мес</b></span></div>";
+}
+function priceHTML(f, noAct) {
+  return '<div class="price"><div class="pnote"><span class="note">' + (sale(f) ? "Цена со скидкой" : "Цена") + '</span>' + (noAct ? "" : '<span class="act">Актуально на ' + DATE + "</span>") + "</div>" +
+    '<div class="main">' + rub(f.promo) + "</div>" +
+    (sale(f) ? '<div class="old">' + rub(f.price) + '</div><div class="cond">при 100% оплате · ипотеке · обмене</div>' : "") + "</div>";
+}
+function planTags(f) {
+  const fin = finish(f);
+  return '<span class="ptags"><span class="tag">' + roomsShort(f) + "</span>" +
+    (fin ? '<span class="pill2 ' + (fin === "Предчистовая отделка" ? "fill" : "raw") + '">' + fin + "</span>" : "") +
+    (!free(f) ? '<span class="bk">' + esc(f.status) + "</span>" : "") + "</span>";
+}
+function btns(f) {
+  const list = (hasTranche(f) ? [["tr", "Транш"]] : []).concat([["fam", "Семейная"], ["std", "Стандартная"], ["inst", "Рассрочка"]]);
+  return list.map(b => '<a class="calcbtn" href="#flat-' + f.id + "-" + b[0] + '">' + b[1] + " <i>›</i></a>").join("");
+}
+function cardHTML(f) {
+  return '<article class="card" data-id="' + f.id + '">' +
+    '<div class="plan">' + planTags(f) + '<img loading="lazy" src="' + img(f, "planhd") + '" alt="Планировка: ' + esc(flatName(f)) + '"></div>' +
+    '<div class="body">' +
+      '<div class="head"><h2>' + esc(flatName(f)) + '</h2><a class="open" href="#flat-' + f.id + '">Подробнее ›</a></div>' +
+      '<dl class="params"><div><dt>Этаж</dt><dd>' + f.floor + '</dd></div><div><dt>Площадь</dt><dd>' + fmt1.format(f.area) + ' м²</dd></div><div><dt>За м²</dt><dd>' + rub(f.promo / f.area) + "</dd></div></dl>" +
+      offersHTML(f) + priceHTML(f) +
+      '<div class="calcrow"><span class="lbl"><b>Подробный расчёт</b> ипотека и рассрочка</span><div class="cbtns">' + btns(f) + "</div></div>" +
+    "</div></article>";
+}
+function renderGrid() {
+  const a = filtered();
+  const p = a.map(f => f.promo);
+  $("#summary").innerHTML = "Показано <b>" + a.length + "</b> из " + FLATS.length + (a.length ? " · от <b>" + mln(Math.min(...p)) + "</b> до <b>" + mln(Math.max(...p)) + " ₽</b> со скидкой" : "");
+  $("#grid").innerHTML = a.length ? a.map(cardHTML).join("") : '<div class="empty">Нет квартир под эти фильтры. Выберите «Все».</div>';
+}
+$("#grid").addEventListener("click", e => {
+  if (e.target.closest("a")) return;
+  const c = e.target.closest(".card"); if (c) location.hash = "flat-" + c.dataset.id;
+});
+
+/* ---------- квартира ---------- */
+let cur = null;
+function renderFlat(f) {
+  cur = f;
+  const tabs = [["planhd", "Планировка"], ["dim", "С размерами"], ["floor", "На этаже"]].filter(t => t[0] === "planhd" || f.img.includes(t[0]));
+  $("#flat-view").innerHTML =
+  '<div class="wrap detail">' +
+    '<button type="button" class="back" id="back">‹ Все квартиры</button>' +
+    '<div class="dgrid">' +
+      '<section class="dplan">' +
+        '<button type="button" class="plan" id="bigplan">' + planTags(f) + '<img id="bigimg" src="' + img(f, "planhd") + '" alt="Планировка: ' + esc(flatName(f)) + '"></button>' +
+        '<div class="ptabs" id="ptabs">' + tabs.map((t, i) => '<button type="button" class="chip" data-k="' + t[0] + '" aria-pressed="' + (i === 0) + '">' + t[1] + "</button>").join("") + "</div>" +
+        '<p class="hint">Нажмите на планировку, чтобы увеличить.</p>' +
+      "</section>" +
+      '<section class="dinfo">' +
+        '<div><span class="eyebrow">ЖК Квартал «Издание» · ' + roomsShort(f) + "</span><h1>" + esc(flatName(f)) + '</h1><span class="fresh">Актуально на ' + DATE + "</span></div>" +
+        '<dl class="dparams">' +
+          "<div><dt>Дом</dt><dd>" + houseNo(f) + "</dd></div>" +
+          "<div><dt>Секция</dt><dd>" + esc(f.sec) + "</dd></div>" +
+          "<div><dt>Этаж</dt><dd>" + f.floor + " из " + f.floors + "</dd></div>" +
+          "<div><dt>Площадь</dt><dd>" + fmt1.format(f.area) + " м²</dd></div>" +
+          "<div><dt>За м²</dt><dd>" + rub(f.promo / f.area) + "</dd></div>" +
+          "<div><dt>Квартира</dt><dd>№ " + esc(f.n) + "</dd></div>" +
+        "</dl>" +
+        priceHTML(f, true) + offersHTML(f) +
+        '<div class="dtags">' + f.tags.map(t => '<span class="' + (t === "Предчистовая отделка" ? "fill" : t.startsWith("Семейная") ? "red" : "") + '">' + esc(t) + "</span>").join("") + "</div>" +
+        '<div class="dlrow"><button type="button" class="dlbtn" data-dl="all">Скачать карточку с расчётами · PDF</button><span class="dlmsg" id="dlmsg" role="status"></span></div>' +
+        '<p class="status">Статус: ' + esc(f.status.toLowerCase()) + ". Цены на " + DATE + '. <a href="' + esc(f.url) + '" target="_blank" rel="noopener">Квартира на сайте застройщика ›</a></p>' +
+      "</section>" +
+    "</div>" +
+    '<h2 class="calch">Расчёт платежей</h2>' +
+    '<div class="cgrid">' +
+      (hasTranche(f) ? '<section class="ccard" id="c-tr"></section>' : "") +
+      '<section class="ccard" id="c-fam"></section>' +
+      '<section class="ccard" id="c-inst"></section>' +
+      '<section class="ccard" id="c-std"></section>' +
+    "</div>" +
+  "</div>";
+  $("#back").onclick = () => { location.hash = ""; };
+  $("#ptabs").onclick = e => {
+    const b = e.target.closest("button"); if (!b) return;
+    $("#bigimg").src = img(f, b.dataset.k);
+    $("#ptabs").querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", x === b));
+  };
+  $("#bigplan").onclick = () => {
+    $("#zoom-img").src = $("#bigimg").src; $("#zoom-cap").textContent = flatName(f) + " · " + fmt1.format(f.area) + " м²";
+    try { $("#zoom").showModal(); } catch (e) { /* без увеличения */ }
+  };
+  renderCalcs();
+}
+const range = (id, label, min, max, step, val, out) =>
+  '<div class="fld"><span class="lbl">' + label + '</span><div class="rng"><input type="range" id="' + id + '" min="' + min + '" max="' + max + '" step="' + step + '" value="' + val + '" aria-label="' + label + '"><output for="' + id + '">' + out + "</output></div></div>";
+const priceBox = f => '<div class="okbox">Расчёт от цены со скидкой с сайта — ' + rub(f.promo) + "<small>" + (sale(f) ? "Без скидки " + rub(f.price) + ", все скидки сохраняются" : "Цена одинакова для всех способов оплаты") + "</small></div>";
+const WARN = '<div class="warn">Расчёт ориентировочный. Точные цифры уточняйте у менеджеров на проекте.</div>';
+const years = n => n + " " + (n % 10 === 1 && n % 100 !== 11 ? "год" : [2, 3, 4].includes(n % 10) && ![12, 13, 14].includes(n % 100) ? "года" : "лет");
+
+function renderCalcs() {
+  const f = cur;
+  if (hasTranche(f)) {
+    const t = calcTranche(f, S.tr, S.trTerm);
+    $("#c-tr").innerHTML = chead("Траншевая ипотека", "tr") + priceBox(f) +
+      '<div class="fld"><span class="lbl">Первоначальный взнос</span><div class="group" id="tr-pv">' +
+        [30, 20].map(v => '<button type="button" class="chip" data-v="' + v + '" aria-pressed="' + (S.tr === v) + '">' + v + "%</button>").join("") + "</div></div>" +
+      range("tr-term", "Срок кредита", 5, 30, 1, S.trTerm, years(S.trTerm)) +
+      '<div class="big"><div><div class="t">Первоначальный взнос ' + S.tr + '%</div><div class="p">' + rub(t.pvSum) + '</div></div><div class="side"><div class="t">Сумма кредита</div><div class="p">' + rub(t.credit) + "</div></div></div>" +
+      '<div class="stages">' +
+        '<div class="stage"><div class="t">Первые 3 года</div><div class="p">' + rub(t.pay1) + '</div><div class="s">в месяц · банк выдаёт первый транш ' + rub(t.first) + (S.tr === 20 ? " (10% цены)" : "") + "</div></div>" +
+        '<div class="stage"><div class="t">С ' + monthName(t.from2) + '</div><div class="p">' + rub(t.pay2) + '</div><div class="s">в месяц · банк выдаёт второй транш ' + rub(t.second) + "</div></div>" +
+      "</div>" +
+      '<dl class="facts"><dt>Ставка</dt><dd>18,7%</dd></dl>' +
+      '<p class="fine">Дом 2. Второй транш выдаётся спустя 3 года. Пока он не выдан, платёж считается только с первого транша.</p>' + WARN;
+    $("#tr-pv").onclick = e => { const b = e.target.closest("button"); if (!b) return; S.tr = +b.dataset.v; saveS(); renderCalcs(); };
+    live("tr-term", v => { S.trTerm = v; });
+  }
+  const fm = calcFamily(f, S.famPv, S.kids, S.famTerm);
+  $("#c-fam").innerHTML = chead("Семейная ипотека", "fam") + priceBox(f) +
+    '<div class="fld"><span class="lbl">Количество детей</span><div class="group" id="fam-kids">' +
+      ["1 ребёнок", "2 ребёнка", "3 ребёнка", "4 ребёнка", "5 и более"].map((l, i) => '<button type="button" class="chip" data-v="' + (i + 1) + '" aria-pressed="' + (S.kids === i + 1) + '">' + l + " <small>" + KIDS_RATE[i] + "%</small></button>").join("") + "</div></div>" +
+    range("fam-pv", "Первоначальный взнос", 20, 90, 1, S.famPv, S.famPv + "%") +
+    range("fam-term", "Срок кредита", 5, 30, 1, S.famTerm, years(S.famTerm)) +
+    (fm.payLater
+      ? '<div class="stages"><div class="stage" style="background:var(--blue-soft)"><div class="t">Первые 15 лет</div><div class="p">' + rub(fm.pay) + '</div><div class="s">в месяц · ставка 3,9%</div></div>' +
+        '<div class="stage"><div class="t">С ' + monthName(fm.from2) + '</div><div class="p">' + rub(fm.payLater) + '</div><div class="s">в месяц · ставка ' + fmt1.format(fm.rate2) + "% · ещё " + years(fm.term - FAM39_YEARS) + "</div></div></div>"
+      : '<div class="big"><div><div class="t">Ежемесячный платёж</div><div class="p">' + rub(fm.pay) + '</div><div class="s">ставка ' + fmt1.format(fm.rate) + "% · " + fm.n + " платежей</div></div></div>") +
+    '<dl class="facts"><dt>Первоначальный взнос</dt><dd>' + rub(fm.pvSum) + "</dd><dt>Сумма кредита</dt><dd>" + rub(fm.credit) + "</dd></dl>" +
+    '<p class="fine">Оба дома. При взносе от 50% ставка 3,9% первые 15 лет, затем на 4 п.п. выше — 7,9%. При взносе меньше 50% ставка зависит от числа детей: 12–10–8–6–4%.</p>' + WARN;
+  $("#fam-kids").onclick = e => { const b = e.target.closest("button"); if (!b) return; S.kids = +b.dataset.v; saveS(); renderCalcs(); };
+  live("fam-pv", v => { S.famPv = v; });
+  live("fam-term", v => { S.famTerm = v; });
+
+  const i = calcInst(f), ref = annuity(i.balloon, S.refRate, S.refTerm * 12);
+  $("#c-inst").innerHTML = chead("Рассрочка", "inst") + priceBox(f) +
+    '<dl class="facts"><dt>Условия (' + esc(f.house) + ")</dt><dd>" + i.c.text + "</dd><dt>Срок рассрочки</dt><dd>" + i.n + " мес., до " + monthName(i.last) + "</dd></dl>" +
+    '<div class="stages">' +
+      '<div class="stage"><div class="t">Сразу</div><div class="p">' + rub(i.pvSum) + '</div><div class="s">первоначальный взнос ' + i.c.pv + "%</div></div>" +
+      '<div class="stage"><div class="t">Ежемесячно</div><div class="p">' + rub(i.pay) + '</div><div class="s">' + fmt1.format(i.c.pct) + "% от остатка " + rub(i.rest) + "</div></div>" +
+      '<div class="stage"><div class="t">В ' + monthName(i.balloonAt) + '</div><div class="p">' + rub(i.balloon) + '</div><div class="s">остаток одним платежом или в ипотеку</div></div>' +
+    "</div>" +
+    '<div class="fld"><span class="lbl">Если остаток перевести в ипотеку</span><div class="two">' +
+      '<label class="fld"><span class="lbl">Ставка, % годовых</span><input type="number" id="ref-rate" step="0.1" min="0" value="' + S.refRate + '"></label>' +
+      '<label class="fld"><span class="lbl">Срок, лет</span><input type="number" id="ref-term" step="1" min="1" max="30" value="' + S.refTerm + '"></label></div></div>' +
+    '<div class="big"><div><div class="t">Платёж по ипотеке на остаток</div><div class="p">' + rub(ref) + '</div><div class="s">с ' + monthName(i.balloonAt) + " · кредит " + rub(i.balloon) + "</div></div></div>" + WARN;
+  $("#ref-rate").onchange = e => { S.refRate = Math.max(0, +e.target.value || 0); saveS(); renderCalcs(); };
+  $("#ref-term").onchange = e => { S.refTerm = Math.min(30, Math.max(1, Math.round(+e.target.value || 1))); saveS(); renderCalcs(); };
+
+  const sd = calcStd(f, S.stdRate, S.stdPv, S.stdTerm);
+  $("#c-std").innerHTML = chead("Стандартная ипотека", "std") +
+    '<div class="two"><label class="fld"><span class="lbl">Ставка, % годовых</span><input type="number" id="std-rate" step="0.1" min="0" value="' + S.stdRate + '"></label>' +
+    '<label class="fld"><span class="lbl">Первоначальный взнос, %</span><input type="number" id="std-pv" step="1" min="0" max="90" value="' + S.stdPv + '"></label></div>' +
+    range("std-term", "Срок кредита", 5, 30, 1, S.stdTerm, years(S.stdTerm)) +
+    '<div class="big"><div><div class="t">Ежемесячный платёж</div><div class="p">' + rub(sd.pay) + '</div><div class="s">ставка ' + fmt1.format(S.stdRate) + "% · " + sd.n + " платежей</div></div></div>" +
+    '<dl class="facts"><dt>Цена со скидкой</dt><dd>' + rub(f.promo) + "</dd><dt>Первоначальный взнос " + S.stdPv + "%</dt><dd>" + rub(sd.pvSum) + "</dd><dt>Сумма кредита</dt><dd>" + rub(sd.credit) + "</dd></dl>" +
+    '<p class="fine">Аннуитетный платёж. Задайте условия банка.</p>' + WARN;
+  $("#std-rate").onchange = e => { S.stdRate = Math.max(0, +e.target.value || 0); saveS(); renderCalcs(); };
+  $("#std-pv").onchange = e => { S.stdPv = Math.min(90, Math.max(0, +e.target.value || 0)); saveS(); renderCalcs(); };
+  live("std-term", v => { S.stdTerm = v; });
+}
+function chead(title, key) {
+  return '<div class="chead"><h3>' + title + '</h3><button type="button" class="dlmini" data-dl="' + key + '">Скачать расчёт · PDF</button></div>';
+}
+
+/* ---------- PDF: квартира целиком или один расчёт ---------- */
+const LIBS = ["https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js",
+              "https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"];
+let libsP = null;
+function loadLibs() {
+  if (!libsP) libsP = Promise.all(LIBS.map(src => new Promise((ok, bad) => {
+    const el = document.createElement("script"); el.src = src; el.onload = ok; el.onerror = () => bad(new Error("lib")); document.head.appendChild(el);
+  }))).catch(e => { libsP = null; throw e; });
+  return libsP;
+}
+const tbl = rows => "<table>" + rows.map(r => "<tr><td>" + r[0] + "</td><td>" + r[1] + "</td></tr>").join("") + "</table>";
+const hl = items => '<div class="hl">' + items.map((x, i) => '<div class="' + (i ? "alt" : "") + '"><small>' + x[0] + "</small><b>" + x[1] + "</b>" + (x[2] ? "<small>" + x[2] + "</small>" : "") + "</div>").join("") + "</div>";
+function sheetCalc(key, f) {
+  const base = "Расчёт от цены со скидкой " + rub(f.promo) + (sale(f) ? " (без скидки " + rub(f.price) + ")" : "");
+  if (key === "tr") {
+    const a = calcTranche(f, 30, S.trTerm), b = calcTranche(f, 20, S.trTerm);
+    const v = (t, pv, lbl) => '<div class="box" style="margin-top:10px"><b>Взнос ' + pv + "% · первый транш " + lbl + "</b>" +
+      hl([["Первые 3 года", rub(t.pay1) + "/мес", "транш " + rub(t.first)], ["С " + monthName(t.from2), rub(t.pay2) + "/мес", "второй транш " + rub(t.second)]]) +
+      tbl([["Первоначальный взнос", rub(t.pvSum)], ["Сумма кредита", rub(t.credit)]]) + "</div>";
+    return "<h2>Траншевая ипотека</h2><div class=\"sm\">" + base + ". Ставка 18,7%, срок " + years(S.trTerm) + ". Второй транш выдаётся спустя 3 года.</div>" +
+      v(a, 30, "100 000 ₽") + v(b, 20, "10% цены");
+  }
+  if (key === "fam") {
+    const m = calcFamily(f, S.famPv, S.kids, S.famTerm);
+    return "<h2>Семейная ипотека</h2><div class=\"sm\">" + base + ". При взносе от 50% ставка 3,9% первые 15 лет, затем 7,9%; при меньшем — 12–10–8–6–4% по числу детей.</div>" +
+      (m.payLater ? hl([["Первые 15 лет", rub(m.pay) + "/мес", "ставка 3,9%"], ["С " + monthName(m.from2), rub(m.payLater) + "/мес", "ставка " + fmt1.format(m.rate2) + "%"]])
+                  : hl([["Ежемесячный платёж", rub(m.pay), "ставка " + fmt1.format(m.rate) + "% · " + m.n + " платежей"]])) +
+      tbl([["Детей в семье", S.kids === 5 ? "5 и более" : S.kids], ["Первоначальный взнос " + S.famPv + "%", rub(m.pvSum)], ["Сумма кредита", rub(m.credit)], ["Срок", years(m.term)]]);
+  }
+  if (key === "inst") {
+    const i = calcInst(f), ref = annuity(i.balloon, S.refRate, S.refTerm * 12);
+    return "<h2>Рассрочка</h2><div class=\"sm\">" + base + ". " + esc(f.house) + ": " + i.c.text + ".</div>" +
+      hl([["Сразу", rub(i.pvSum), "взнос " + i.c.pv + "%"], ["Ежемесячно", rub(i.pay), i.n + " платежей, до " + monthName(i.last)], ["В " + monthName(i.balloonAt), rub(i.balloon), "остаток"]]) +
+      tbl([["Остаток после взноса", rub(i.rest)], ["Если остаток в ипотеку (" + fmt1.format(S.refRate) + "%, " + years(S.refTerm) + ")", rub(ref) + "/мес"]]);
+  }
+  const d = calcStd(f, S.stdRate, S.stdPv, S.stdTerm);
+  return "<h2>Стандартная ипотека</h2><div class=\"sm\">" + base + ".</div>" +
+    hl([["Ежемесячный платёж", rub(d.pay), "ставка " + fmt1.format(S.stdRate) + "% · " + d.n + " платежей"]]) +
+    tbl([["Первоначальный взнос " + S.stdPv + "%", rub(d.pvSum)], ["Сумма кредита", rub(d.credit)], ["Срок", years(S.stdTerm)]]);
+}
+function sheetHead(f, planSrc) {
+  const brand = '<div class="brand"><img src="logo.png" alt=""><span>Простор-недвижимость · Департамент брокериджа<br>Цены на ' + DATE + "</span></div>";
+  const info = '<div class="ey">ЖК Квартал «Издание» · ' + roomsShort(f) + "</div><h1>" + esc(flatName(f)) + '</h1><div class="act">Актуально на ' + DATE + "</div>" +
+    '<dl class="kv"><div><dt>Дом · секция</dt><dd>' + houseNo(f) + " · " + esc(f.sec) + "</dd></div><div><dt>Этаж</dt><dd>" + f.floor + " из " + f.floors + "</dd></div>" +
+    "<div><dt>Площадь</dt><dd>" + fmt1.format(f.area) + " м²</dd></div><div><dt>За м²</dt><dd>" + rub(f.promo / f.area) + "</dd></div>" +
+    "<div><dt>Квартира</dt><dd>№ " + esc(f.n) + "</dd></div></dl>" +
+    '<div class="sm">Цена со скидкой</div><div class="pr">' + rub(f.promo) + "</div>" +
+    (sale(f) ? '<div class="old">' + rub(f.price) + '</div><div class="sm">при 100% оплате · ипотеке · обмене</div>' : "");
+  return brand + '<div class="row"><div class="pl"><img src="' + planSrc + '" alt=""></div><div>' + info +
+    '<div class="tg">' + f.tags.map(t => '<span class="' + (t === "Предчистовая отделка" ? "fill" : "") + '">' + esc(t) + "</span>").join("") + "</div></div></div>";
+}
+async function makePdf(key) {
+  const f = cur; if (!f) return;
+  const msg = $("#dlmsg"), toast = $("#toast");
+  const say = t => { if (msg) msg.textContent = t; toast.textContent = t; toast.hidden = false; clearTimeout(window.__tt); window.__tt = setTimeout(() => { toast.hidden = true; }, /Готовим/.test(t) ? 60000 : 4000); };
+  const btnsAll = document.querySelectorAll("[data-dl]"); btnsAll.forEach(b => b.disabled = true);
+  say("Готовим PDF…");
+  const sheet = document.createElement("div"); sheet.className = "sheet";
+  const keys = key === "all" ? (hasTranche(f) ? ["tr"] : []).concat(["fam", "inst", "std"]) : [key];
+  // планировку и логотип встраиваем как data:-ссылки, чтобы они точно попали в PDF
+  const toData = async url => { try { const b = await (await fetch(url)).blob(); return await new Promise((ok, bad) => { const r = new FileReader(); r.onload = () => ok(r.result); r.onerror = bad; r.readAsDataURL(b); }); } catch (e) { return url; } };
+  const [planSrc, logoSrc] = await Promise.all([toData(img(f, "planhd")), toData("logo.png")]);
+  sheet.innerHTML = '<div class="sec">' + sheetHead(f, planSrc).replace('src="logo.png"', 'src="' + logoSrc + '"') + "</div>" +
+    keys.map(k => '<div class="sec">' + sheetCalc(k, f) + "</div>").join("") +
+    '<div class="sec"><div class="ft">Расчёт ориентировочный: аннуитетные платежи, без страховки и комиссий банка.</div></div>';
+  document.body.appendChild(sheet);
+  try {
+    await loadLibs();
+    await Promise.all([...sheet.querySelectorAll("img")].map(im => im.complete ? 0 : new Promise(r => { im.onload = im.onerror = r; })));
+    const pdf = new window.jspdf.jsPDF({ unit: "mm", format: "a4" });
+    const W = 210, H = 297, M = 8; let y = M, first = true;
+    for (const sec of sheet.children) {
+      const c = await window.html2canvas(sec, { scale: 2, backgroundColor: "#ffffff", logging: false });
+      const h = c.height * (W - 2 * M) / c.width;
+      if (y + h > H - M && y > M) { pdf.addPage(); y = M; }
+      pdf.addImage(c.toDataURL("image/jpeg", 0.92), "JPEG", M, y, W - 2 * M, h); y += h; first = false;
+    }
+    const titles = { all: "", tr: "_Траншевая", fam: "_Семейная", inst: "_Рассрочка", std: "_Стандартная" };
+    const name = "Издание_Дом" + houseNo(f) + "_кв" + f.n + titles[key] + ".pdf";
+    const blob = pdf.output("blob");
+    const dl = window.claude && window.claude.use ? await window.claude.use("downloads") : null;
+    if (dl) {
+      try { await dl.save({ filename: name, data: blob }); say("Файл сохранён: " + name); }
+      catch (e) { say(e && e.code === "declined" ? "Сохранение отменено." : e && e.code === "rate_limited" ? "Окно сохранения уже открыто — завершите его и нажмите ещё раз." : "Скачивание здесь недоступно."); }
+    } else {
+      const a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name;
+      document.body.appendChild(a); a.click(); setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 2000);
+      say("Файл скачан: " + name);
+    }
+  } catch (e) {
+    say("Не удалось собрать PDF. Проверьте интернет и попробуйте ещё раз.");
+  } finally {
+    sheet.remove(); btnsAll.forEach(b => b.disabled = false);
+  }
+}
+$("#flat-view").addEventListener("click", e => {
+  const b = e.target.closest("[data-dl]"); if (!b || b.disabled) return;
+  if (b.dataset.dl !== "all") { const m = $("#dlmsg"); if (m) m.textContent = ""; }
+  makePdf(b.dataset.dl);
+});
+
+function live(id, set) {
+  const el = document.getElementById(id); if (!el) return;
+  const out = el.parentNode.querySelector("output");
+  el.oninput = () => { if (out) out.textContent = /term/.test(id) ? years(+el.value) : el.value + "%"; };
+  el.onchange = () => { set(+el.value); saveS(); renderCalcs(); const n = document.getElementById(id); if (n) n.focus(); };
+}
+
+$("#home").addEventListener("click", e => {
+  e.preventDefault(); listScroll = 0;
+  if (location.hash) history.pushState(null, "", location.pathname + location.search);
+  route(); window.scrollTo(0, 0);
+});
+$("#zoom-close").onclick = () => $("#zoom").close();
+$("#zoom").addEventListener("click", e => { if (e.target.id === "zoom") $("#zoom").close(); });
+
+/* ---------- маршрутизация: #flat-ID или #flat-ID-tr|fam|inst|std ---------- */
+let listScroll = 0;
+function route() {
+  const m = /^#flat-(\d+)(?:-(tr|fam|inst|std))?$/.exec(location.hash);
+  const f = m && byId.get(m[1]);
+  if (f) {
+    if (!$("#list-view").hidden) listScroll = window.scrollY;
+    $("#list-view").hidden = true; $("#flat-view").hidden = false;
+    if (cur !== f || $("#flat-view").innerHTML === "") renderFlat(f);
+    document.title = flatName(f) + " · Квартал «Издание»";
+    const box = m[2] && document.getElementById("c-" + m[2]);
+    if (box) { box.scrollIntoView({ block: "start" }); box.classList.add("flash"); setTimeout(() => box.classList.remove("flash"), 1600); }
+    else window.scrollTo(0, 0);
+  } else {
+    cur = null;
+    $("#flat-view").hidden = true; $("#list-view").hidden = false;
+    document.title = "Квартал «Издание»";
+    window.scrollTo(0, listScroll);
+  }
+}
+renderHead(); renderFilters();
+$("#f-sort").value = F.sort;
+$("#f-sort").onchange = e => { F.sort = e.target.value; saveF(); renderGrid(); };
+renderGrid();
+window.addEventListener("hashchange", route);
+route();
+})();
+</script>
+
+</body></html>
