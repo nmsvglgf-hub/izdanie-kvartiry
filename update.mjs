@@ -88,19 +88,40 @@ async function ensureImages(f, rec) {
 const list = await listFlats();
 if (list.length < 10) throw new Error("подозрительно мало квартир: " + list.length + " — data.js не трогаю");
 
+// Цены и статус есть в списке (сверено со страницами квартир). Страницу квартиры открываем
+// только для новых лотов и при FULL=1 (раз в сутки: теги, площади, картинки).
+const oldJs = fs.readFileSync("data.js", "utf8");
+const old = new Map(JSON.parse(oldJs.split("window.IZD_FLATS=")[1].trim().replace(/;$/, "")).map(f => [f.id, f]));
+const full = process.env.FULL === "1" || process.env.FULL === "true";
+
 const flats = [];
 for (const l of list) {
+  const prev = old.get(l.flat_id);
+  if (prev && !full) {
+    const price = num(l.price);
+    flats.push({ ...prev,
+      price,
+      promo: num(l.price_package_marketing) || price,
+      status: l.is_booked ? "Забронирована" : "Свободна",
+      done: (l.delivery_title || "").replace(/^Срок сдачи:\s*/, "") || prev.done });
+    continue;
+  }
   const f = await flatDetail(l.page_url);
   const rec = toRecord(l, f);
   await ensureImages(f, rec);
   flats.push(rec);
+  if (!prev) console.log("новый лот: " + rec.id);
 }
+for (const id of old.keys()) if (!flats.some(f => f.id === id)) console.log("снят с продажи: " + id);
+
+// Флаг для workflow: коммитим только когда изменились сами квартиры, а не время проверки.
+const body = flats.map(f => JSON.stringify(f)).join(",\n");
+if (!oldJs.includes("window.IZD_FLATS=[" + body + "];")) fs.writeFileSync(".changed", "");
 
 const now = new Date(Date.now() + 3 * 3600e3); // московское время
 const meta = { updated: now.toISOString().slice(0, 10), time: now.toISOString().slice(11, 16), source: `${BASE}/flat/?complex=${COMPLEX}` };
 fs.writeFileSync("data.js",
-  "window.IZD_META=" + JSON.stringify(meta) + ";\nwindow.IZD_FLATS=[" +
-  flats.map(f => JSON.stringify(f)).join(",\n") + "];\n");
+  "window.IZD_META=" + JSON.stringify(meta) + ";\nwindow.IZD_FLATS=[" + body + "];\n");
 
 // Картинки проданных квартир больше не нужны.
 const keep = new Set(flats.flatMap(f => f.img.map(k => `${k}_${f.id}.webp`)));

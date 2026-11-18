@@ -111,6 +111,17 @@ select{font-size:14px;padding:8px 14px;border-radius:999px;border:0;background:v
 .price .main{font-family:var(--display);font-weight:700;font-size:23px;font-variant-numeric:tabular-nums;color:var(--red)}
 .price .old{font-size:14px;color:var(--muted);text-decoration:line-through;font-variant-numeric:tabular-nums}
 .price .cond{font-size:12.5px;color:var(--muted);margin-top:2px}
+/* Скидка 2% только с Простором: самый заметный элемент карточки и шапки */
+.p2{display:flex;align-items:center;gap:10px;margin-top:10px;background:#c94f00;color:#fff;border-radius:14px;padding:8px 12px 8px 8px;font-weight:700;font-size:14px;line-height:1.2}
+.p2 b{flex:none;font-family:var(--display);font-size:20px;background:#fff;color:#c94f00;border-radius:10px;padding:3px 9px;font-variant-numeric:tabular-nums}
+.p2 span{text-transform:uppercase;letter-spacing:.02em}
+.hero .p2{margin:4px 0 14px;padding:12px 18px 12px 12px;font-size:17px;border-radius:20px;align-self:flex-start;box-shadow:0 8px 24px -10px rgba(201,79,0,.7)}
+.hero .p2 b{font-size:32px;padding:4px 14px;border-radius:14px}
+.brandbar .p2{margin:0 0 0 auto;border-radius:999px;padding:6px 14px 6px 6px}
+.brandbar .p2 b{font-size:16px;border-radius:999px;padding:2px 10px}
+.brandbar .p2 + .pill{margin-left:0}
+@media (max-width:640px){.brandbar .p2{display:none}.hero .p2{font-size:15px}.hero .p2 b{font-size:26px}}
+.sheet .p2s{display:inline-block;margin-top:8px;background:#c94f00;color:#fff;border-radius:10px;padding:6px 12px;font-weight:700;font-size:14px}
 .offers{background:var(--blue-soft);border-radius:12px;padding:8px 12px;display:flex;flex-direction:column;gap:2px;font-variant-numeric:tabular-nums;font-size:13px}
 .offers .o-h{font-weight:700;font-size:13px}
 .offers .o-r{display:flex;justify-content:space-between;gap:8px}
@@ -236,6 +247,7 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
   <div class="brandbar">
     <a class="logo" href="#" id="home" title="К списку квартир" aria-label="Простор Недвижимость — к списку квартир"><img src="logo.png" alt="Простор Недвижимость"></a>
     <span class="city">Москва<br>Простор-недвижимость</span>
+    <div class="p2"><b>−2%</b><span>Скидка только с Простором</span></div>
     <span class="pill">Департамент брокериджа</span>
   </div>
 </div></header>
@@ -246,6 +258,7 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
       <span class="eyebrow" id="eyebrow"></span>
       <h1>Квартиры в наличии</h1>
       <span class="fresh" id="fresh"></span>
+      <div class="p2"><b>−2%</b><span>Скидка только с Простором</span></div>
       <p class="lead">Два дома квартала «Издание» от Брусники. Цены со скидкой с сайта застройщика, рядом — цена без скидки. Откройте квартиру или нажмите кнопку программы, чтобы посчитать траншевую и семейную ипотеку, рассрочку или стандартную ипотеку.</p>
     </div>
     <div class="stats" id="stats"></div>
@@ -295,7 +308,8 @@ const store = {
   get(k, d) { try { const v = localStorage.getItem("izd3:" + k); return v == null ? d : JSON.parse(v); } catch (e) { return d; } },
   set(k, v) { try { localStorage.setItem("izd3:" + k, JSON.stringify(v)); } catch (e) { /* без сохранения */ } }
 };
-const DATE = META.updated ? META.updated.split("-").reverse().join(".") : "";
+const DATE = META.updated ? META.updated.split("-").reverse().join(".") + (META.time ? ", " + META.time : "") : "";
+const P2 = '<div class="p2"><b>−2%</b><span>Скидка только с Простором</span></div>';
 const free = f => f.status === "Свободна";
 const sale = f => f.promo < f.price;
 const roomsShort = f => f.title.startsWith("Двухуровневая") ? "Двухуровн." : f.rooms + "-комн.";
@@ -422,7 +436,7 @@ function offersHTML(f) {
 function priceHTML(f, noAct) {
   return '<div class="price"><div class="pnote"><span class="note">' + (sale(f) ? "Цена со скидкой" : "Цена") + '</span>' + (noAct ? "" : '<span class="act">Актуально на ' + DATE + "</span>") + "</div>" +
     '<div class="main">' + rub(f.promo) + "</div>" +
-    (sale(f) ? '<div class="old">' + rub(f.price) + '</div><div class="cond">при 100% оплате · ипотеке · обмене</div>' : "") + "</div>";
+    (sale(f) ? '<div class="old">' + rub(f.price) + '</div><div class="cond">при 100% оплате · ипотеке · обмене</div>' : "") + P2 + "</div>";
 }
 function planTags(f) {
   const fin = finish(f);
@@ -623,7 +637,7 @@ function sheetHead(f, planSrc) {
     "<div><dt>Площадь</dt><dd>" + fmt1.format(f.area) + " м²</dd></div><div><dt>За м²</dt><dd>" + rub(f.promo / f.area) + "</dd></div>" +
     "<div><dt>Квартира</dt><dd>№ " + esc(f.n) + "</dd></div></dl>" +
     '<div class="sm">Цена со скидкой</div><div class="pr">' + rub(f.promo) + "</div>" +
-    (sale(f) ? '<div class="old">' + rub(f.price) + '</div><div class="sm">при 100% оплате · ипотеке · обмене</div>' : "");
+    (sale(f) ? '<div class="old">' + rub(f.price) + '</div><div class="sm">при 100% оплате · ипотеке · обмене</div>' : "") + '<div class="p2s">−2% · скидка только с Простором</div>';
   return brand + '<div class="row"><div class="pl"><img src="' + planSrc + '" alt=""></div><div>' + info +
     '<div class="tg">' + f.tags.map(t => '<span class="' + (t === "Предчистовая отделка" ? "fill" : "") + '">' + esc(t) + "</span>").join("") + "</div></div></div>";
 }
