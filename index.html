@@ -246,29 +246,42 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
 /* ---------- Всплывающее окно с УТП при открытии ссылки ---------- */
 .usp-back{position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(1,20,32,.62);backdrop-filter:blur(3px)}
 .usp-back[hidden]{display:none!important}
-.usp{position:relative;width:100%;max-width:600px;max-height:calc(100dvh - 32px);overflow:auto;border-radius:28px;color:#fff;
+.usp{position:relative;width:100%;max-width:680px;max-height:calc(100dvh - 32px);overflow:auto;border-radius:28px;color:#fff;
   background:linear-gradient(180deg,rgba(1,26,42,.3) 0%,rgba(1,26,42,.82) 34%,rgba(1,26,42,.95) 100%),url("promo.jpg") center top/cover no-repeat,#012e45;
-  box-shadow:0 30px 80px -20px rgba(0,0,0,.6);padding:28px 28px 24px}
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.6);padding:32px 34px 28px}
 .usp-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.18);color:#fff;font-size:22px;line-height:1;cursor:pointer}
 .usp-x:hover{background:rgba(255,255,255,.3)}
 .usp-x:focus-visible,.usp-go:focus-visible{outline:3px solid #fff;outline-offset:2px}
 .usp-ey{display:inline-block;background:#c94f00;border-radius:999px;padding:6px 14px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
-.usp h2{font-family:var(--display);font-size:30px;line-height:1.1;margin:70px 0 4px;text-shadow:0 2px 12px rgba(0,0,0,.4)}
-.usp .q{font-size:15px;opacity:.85;margin:0 0 18px}
+.usp h2{font-family:var(--display);font-size:34px;line-height:1.1;margin:70px 0 4px;text-shadow:0 2px 12px rgba(0,0,0,.4)}
+.usp .q{font-size:16px;opacity:.85;margin:0 0 10px}
+.usp-loc{display:inline-flex;align-items:center;gap:8px;margin:0 0 18px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:7px 14px 7px 10px;font-weight:700;font-size:15px}
+.usp-loc svg{width:18px;height:18px;fill:#ffc58f;flex:none}
 .usp-main{background:#fff;color:#012e45;border-radius:20px;padding:16px 18px;margin-bottom:14px}
-.usp-main h3{margin:0 0 10px;font-family:var(--display);font-size:22px;line-height:1.15}
+.usp-main h3{margin:0 0 10px;font-family:var(--display);font-size:25px;line-height:1.15}
 .usp-main h3 em{font-style:normal;color:#c94f00}
 .usp ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.usp li{position:relative;padding-left:28px;font-size:15px;line-height:1.35}
+.usp li{position:relative;padding-left:28px;font-size:16px;line-height:1.35}
 .usp li::before{content:"✓";position:absolute;left:0;top:0;width:20px;height:20px;border-radius:50%;background:#1d7a4e;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center}
 .usp li.ag{background:#fee9d6;border-radius:12px;padding:8px 10px 8px 40px}
 .usp li.ag::before{content:"%";background:#c94f00;left:10px;top:8px}
 .usp .more{font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;opacity:.8;margin:6px 0 10px}
 .usp .alt li::before{background:#1879d4}
-.usp-q1{margin-top:16px;border-top:1px solid rgba(255,255,255,.2);padding-top:14px;font-size:14.5px;line-height:1.4}
+.usp-q1{margin-top:16px;border-top:1px solid rgba(255,255,255,.2);padding-top:14px;font-size:15.5px;line-height:1.4}
 .usp-q1 b{color:#ffc58f}
 .usp-go{display:block;width:100%;margin-top:18px;border:0;border-radius:999px;background:#1879d4;color:#fff;font-weight:700;font-size:16px;padding:14px;cursor:pointer}
 .usp-go:hover{background:#1468b8}
+.usp-open{display:inline-flex;align-items:center;gap:12px;align-self:flex-start;margin:4px 0 12px;border:0;cursor:pointer;background:#1879d4;color:#fff;border-radius:999px;padding:14px 22px 14px 14px;font-family:var(--display);font-weight:700;font-size:19px;box-shadow:0 10px 26px -12px rgba(24,121,212,.9)}
+.usp-open .star{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#f89332;color:#fff;font-size:18px}
+.usp-open i{font-style:normal;font-size:24px;line-height:1;margin-left:2px}
+.usp-open:hover{background:#1468b8}
+.usp-open:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.usp-open.sm{margin:0;padding:6px 14px 6px 6px;font-size:14px;gap:8px;box-shadow:none}
+.usp-open.sm .star{width:26px;height:26px;font-size:14px}
+.usp-open.sm i{font-size:18px}
+.brandbar .usp-open.sm{margin-left:auto}
+.brandbar .usp-open.sm + .p2{margin-left:0}
+@media (max-width:640px){.brandbar .usp-open.sm{display:none}.usp-open{font-size:17px;width:100%;justify-content:flex-start}}
 @media (max-width:520px){.usp{padding:22px 18px 18px;border-radius:22px}.usp h2{font-size:25px;margin-top:56px}.usp-main h3{font-size:19px}}
 </style>
 <header class="top"><div class="wrap">
@@ -276,6 +289,7 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
     <a class="logo" href="#" id="home" title="К списку квартир" aria-label="Простор Недвижимость — к списку квартир"><img src="logo.png" alt="Простор Недвижимость"></a>
     <span class="city">Москва<br>Простор-недвижимость</span>
     <div class="p2"><b>−2%</b><span>Скидка только с Простором</span></div>
+    <button type="button" class="usp-open sm"><span class="star" aria-hidden="true">★</span>УТП жилого комплекса<i aria-hidden="true">›</i></button>
     <span class="pill">Департамент брокериджа</span>
   </div>
 </div></header>
@@ -286,6 +300,7 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
       <span class="eyebrow" id="eyebrow"></span>
       <h1>Квартиры в наличии</h1>
       <span class="fresh" id="fresh"></span>
+      <button type="button" class="usp-open"><span class="star" aria-hidden="true">★</span>УТП жилого комплекса<i aria-hidden="true">›</i></button>
       <div class="p2"><b>−2%</b><span>Скидка только с Простором</span></div>
       <p class="lead">Два дома квартала «Издание» от Брусники. Цены со скидкой с сайта застройщика, рядом — цена без скидки. Откройте квартиру или нажмите кнопку программы, чтобы посчитать траншевую и семейную ипотеку, рассрочку или стандартную ипотеку.</p>
     </div>
@@ -325,6 +340,7 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
     <span class="usp-ey">Уникальное предложение</span>
     <h2 id="usp-t">ЖК Квартал «Издание»</h2>
     <p class="q">2-я очередь</p>
+    <p class="usp-loc"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>На границе с ЦАО — Таганским районом</p>
     <div class="usp-main">
       <h3>Траншевая ипотека <em>на 3 года</em></h3>
       <ul>
@@ -343,24 +359,28 @@ dialog button{border:0;background:var(--blue-soft);color:var(--ink);border-radiu
   </section>
 </div>
 <script>
-/* УТП показываем при открытии ссылки (один раз за сессию вкладки, чтобы не мешать листать). */
+/* УТП: авто-показ при открытии ссылки (раз за сессию вкладки) + по кнопкам «УТП жилого комплекса». */
 (function () {
   const back = document.getElementById("usp");
-  let seen = false;
-  try { seen = sessionStorage.getItem("usp-seen") === "1"; } catch (e) {}
-  if (seen) return;
-  const close = () => {
+  const onKey = e => { if (e.key === "Escape") close(); };
+  function close() {
     back.hidden = true; document.body.style.overflow = "";
     try { sessionStorage.setItem("usp-seen", "1"); } catch (e) {}
     document.removeEventListener("keydown", onKey);
-  };
-  const onKey = e => { if (e.key === "Escape") close(); };
-  back.hidden = false; document.body.style.overflow = "hidden";
+  }
+  function open() {
+    back.hidden = false; document.body.style.overflow = "hidden";
+    back.querySelector(".usp").scrollTop = 0;
+    document.addEventListener("keydown", onKey);
+    document.getElementById("usp-go").focus({ preventScroll: true });
+  }
   document.getElementById("usp-x").onclick = close;
   document.getElementById("usp-go").onclick = close;
   back.addEventListener("click", e => { if (e.target === back) close(); });
-  document.addEventListener("keydown", onKey);
-  document.getElementById("usp-go").focus({ preventScroll: true });
+  document.querySelectorAll(".usp-open").forEach(b => b.addEventListener("click", open));
+  let seen = false;
+  try { seen = sessionStorage.getItem("usp-seen") === "1"; } catch (e) {}
+  if (!seen) open();
 })();
 </script>
 <script src="data.js"></script>
